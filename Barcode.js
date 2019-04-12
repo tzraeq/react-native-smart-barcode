@@ -7,7 +7,6 @@
 
 
 import React, {
-    PropTypes,
     Component,
 } from 'react'
 import {
@@ -17,6 +16,11 @@ import {
     AppState,
     Platform,
 } from 'react-native'
+
+let PropTypes = require('react').PropTypes;
+if(!PropTypes){
+    PropTypes = require('prop-types');
+}
 
 const BarcodeManager = Platform.OS == 'ios' ? NativeModules.Barcode : NativeModules.CaptureModule
 
