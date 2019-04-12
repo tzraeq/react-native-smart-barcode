@@ -31,24 +31,24 @@ public class RCTCapturePackage implements ReactPackage {
 
 
     @Override
-        public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
-             mModuleInstance = new RCTCaptureModule(reactApplicationContext,captureManager);
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
+        mModuleInstance = new RCTCaptureModule(reactApplicationContext,captureManager);
         return Arrays.<NativeModule>asList(
                 mModuleInstance
         );
-        }
+    }
 
-        @Override
-        public List<Class<? extends JavaScriptModule>> createJSModules() {
-            return Collections.emptyList();
-        }
+    // This method is kept for RN < 0.47 compatibility
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+        return Collections.emptyList();
+    }
 
-        @Override
-        public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
-            //noinspection ArraysAsListWithZeroOrOneArgument
+    @Override
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
+        //noinspection ArraysAsListWithZeroOrOneArgument
 
 //            return Arrays.<ViewManager>asList(captureManager,linearGradientViewManager);
-            return Arrays.<ViewManager>asList(captureManager);
-        }
+        return Arrays.<ViewManager>asList(captureManager);
+    }
 
     }
