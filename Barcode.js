@@ -72,6 +72,10 @@ export default class Barcode extends Component {
         BarcodeManager.stopSession()
     }
 
+    readQR(path){
+        return BarcodeManager.readerQR(path);
+    }
+
     _handleAppStateChange = (currentAppState) => {
         if(currentAppState !== 'active' ) {
             this.stopScan()

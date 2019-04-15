@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.Result;
 import com.reactnativecomponent.barcode.decoding.DecodeUtil;
 import java.util.Collections;
 import java.util.HashMap;
@@ -164,4 +166,26 @@ public class RCTCaptureModule extends ReactContextBaseJavaModule {
                 });
         }
     }*/
+
+    @ReactMethod
+    public void readerQR(String fileUrl, Promise promise ) {
+        Result result = DecodeUtil.scanningImage(fileUrl);
+        if(result == null){
+            promise.reject("404","");
+//            result = decodeBarcodeRGB(fileUrl);
+//            if(result == null){
+//                result = decodeBarcodeYUV(fileUrl);
+//                if(result == null){
+//                    promise.reject("404","没有相关的二维码");
+//                }else{
+//                    promise.resolve(result.getText());
+//                }
+//            }else{
+//                promise.resolve(result.getText());
+//            }
+
+        }else{
+            promise.resolve(result.getText());
+        }
+    }
 }
